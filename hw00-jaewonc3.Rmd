@@ -1,0 +1,206 @@
+---
+title: "hw00-jaewonc3"
+author: "Jaewon Choi"
+date: '2017 9 4 '
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Exercise 1: Know Thine Environment
+
+Figures 1 through 6 verifies each setups.
+
+![Verification of R 3.4.1](/Users/choi/Downloads/stat385 hw00/Ver_R341.png)
+
+![Verification of RStudio 1.0.153](/Users/choi/Downloads/stat385 hw00/Ver_Rstudio10153.png)
+
+![Verification of installation of Git](/Users/choi/Downloads/stat385 hw00/Inst_git.png)
+
+![Verification of Slack](/Users/choi/Downloads/stat385 hw00/Inst_slack.png)
+
+![Verification of Working R Install](/Users/choi/Downloads/stat385 hw00/Ver_work_Rinstall.png)
+
+![Verifying the R Build Toolchain](/Users/choi/Downloads/stat385 hw00/Ver_Rbuildtoolchain.png)
+
+
+##Exercise 2: Toto, I have a feeling we’re not in Kansas anymore…
+
+1. James Balamuta
+2. His office is at Tech Plaza 212F, office hours are TBA
+3. Tag [STAT 385] and a space must be contained before, and the subject has to provide more helpful description
+4. 218 Mechanical Engineering Bldg on Mondays, Wednesdays, and Fridays, 2:00 PM - 2:50 PM.
+5. 1 midterm and 1 final exam, location and time to be announced.
+6. Each component is worth 100 points, and not everyone will get the same points
+7. You will have to cite where you referenced the code from.
+
+
+##Exercise 4: Who I Am
+
+Self-portrait: Figure 7.
+
+![A self portrait](/Users/choi/Downloads/ETC/IMG_1140.jpg)
+
+
+| Item | Who I am |
+|:----:|:--------:|
+| *Name* | Jaewon Choi |
+| *NetID* | jaewonc3 |
+| *Birthday* | 1996.02.26 |
+| *Year* | Junior |
+| *Major* | Industrial Engineering |
+| *Expected graduation date* | 2019.02 |
+
+Ordered List of:
+
+1. My favorite food: steak
+2. My favorite TV show: Game of Thrones
+3. My favorite movie: Breakfast at Tiffany's
+4. My favorite song: Seven Days In Sunny June by Jamiroquai (https://www.youtube.com/watch?v=FRSH-egVyzk)
+
+
+Unordered List of:
+
+* Recent Memorable Event: I saw the eclipse in the airplane.
+* Where I spend free time: In my room.
+
+
+Inline equation  $\phi = \frac{1 + \sqrt5}{2}=$ `r ((1 + sqrt(5))/2)`
+
+
+My favorite mathematical equation is Laplace's Equation:
+$$\Delta f = {\frac{\delta ^2 f}{\delta x^2}}+{\frac{\delta ^2 f}{\delta y^2}}+{\frac{\delta ^2 f}{\delta z^2}}=0$$
+
+
+
+##Exericise 5: Got Code?
+
+```{r}
+divide = function(a, b) {
+  return(a / b)
+}
+
+divide(8, 2)
+
+```
+
+You can prevent display of the result by setting the chunk option `results='hide'`.
+```{r, results='hide'}
+divide = function(a, b) {
+  return(a / b)
+}
+
+divide(8, 2)
+
+```
+
+You don't lose syntax highlighting, but you only hide the results of the code.
+
+There is another way to get similar response; by having it evaluate only code line 1 and 2.
+
+```{r, eval=1:2}
+divide = function(a, b) {
+  return(a / b)
+}
+
+divide(8, 2)
+
+```
+
+if you do not want your code run, you can set the chunk option `eval = FALSE`.
+
+```{r, eval=FALSE}
+divide = function(a, b) {
+  return(a / b)
+}
+
+divide(8, 2)
+
+```
+
+if i want to share divide function without syntax highlighting,
+```
+divide = function(a, b) {
+  return(a / b)
+}
+
+divide(8, 2)
+```
+This approach excludes syntax highlighting, but 
+it is an inline code, not a code chunk.
+
+
+##Exercise 6: Hopeless Wanderer
+
+$(\frac{6}{3}-1)+2*5^2=$ `r ((6/3-1)+2*5^2)`
+
+
+```{r}
+
+add = function(a, b) {
+  message("ADD")
+  return(a + b)
+}
+
+subtract = function(a, b) {
+  message("SUBTRACT")
+  return(a - b)
+}
+
+multiply = function(a, b) {
+  message("MULTIPLY")
+  return(a * b)
+}
+
+divide = function(a, b) {
+  message("DIVIDE")
+  return(a / b)
+}
+
+power = function(a,b){
+  message("POWER")
+  return(a ^ b)
+}
+
+add((subtract(divide(6,3),1)),multiply(2, power(5,2)))
+
+
+```
+
+
+Evaluation order changes when
+```{r}
+
+add = function(a, b) {
+  message("ADD:", a, ",", b)
+  return(a + b)
+}
+
+subtract = function(a, b) {
+  message("SUBTRACT:", a, ",", b)
+  return(a - b)
+}
+
+multiply = function(a, b) {
+  message("MULTIPLY:", a, ",", b)
+  return(a * b)
+}
+
+divide = function(a, b) {
+  message("DIVIDE:", a, ",", b)
+  return(a / b)
+}
+
+power = function(a,b){
+  message("POWER:", a, ",", b)
+  return(a ^ b)
+}
+
+add((subtract(divide(6,3),1)),multiply(2, power(5,2)))
+
+
+```
+my guess is that for the former code prints message as soon as it meets the code, but the latter awaits until there is a return value of `a` and `b` until it prints messages.
